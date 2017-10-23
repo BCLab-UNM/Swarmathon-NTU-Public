@@ -1,7 +1,7 @@
 #ifndef SEARCH_CONTROLLER
 #define SEARCH_CONTROLLER
 
-#include <random_numbers/random_numbers.h>
+//#include <random_numbers/random_numbers.h> // commeted out random
 #include "Controller.h"
 
 /**
@@ -33,7 +33,7 @@ protected:
 
 private:
 
-  random_numbers::RandomNumberGenerator* rng;
+ // random_numbers::RandomNumberGenerator* rng; //commented out random
   Point currentLocation;
   Point centerLocation;
   Point searchLocation;

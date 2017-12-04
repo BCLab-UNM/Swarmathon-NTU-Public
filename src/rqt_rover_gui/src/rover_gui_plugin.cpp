@@ -1683,7 +1683,7 @@ void RoverGUIPlugin::buildSimulationButtonEventHandler()
     }
     else if (ui.prelim_radio_button->isChecked() && !ui.create_savable_world_checkbox->isChecked())
     {
-        arena_dim = 15;
+        arena_dim = 5;//15
         addPrelimsWalls();
         emit sendInfoLogMessage(QString("Set arena size to ")+QString::number(arena_dim)+"x"+QString::number(arena_dim));
     }

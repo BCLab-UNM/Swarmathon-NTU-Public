@@ -44,7 +44,12 @@ private:
   // Search state
   // Flag to allow special behaviour for the first waypoint
   bool first_waypoint = true;
+  bool second_waypoint = true;
+  bool third_waypoint = true;
+  bool fourth_waypoint = true;
   bool succesfullPickup = false;
+
+ 
 };
 
 #endif /* SEARCH_CONTROLLER */

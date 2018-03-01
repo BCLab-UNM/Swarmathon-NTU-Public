@@ -280,8 +280,8 @@ void behaviourStateMachine(const ros::TimerEvent&)
       logicController.SetCenterLocationOdom(centerOdom);
       
       Point centerMap;
-      centerMap.x = currentLocationMap.x + (0 * cos(currentLocationMap.theta));//1.3
-      centerMap.y = currentLocationMap.y + (0 * sin(currentLocationMap.theta));
+      centerMap.x = currentLocationMap.x + (1.3 * cos(currentLocationMap.theta));//1.3
+      centerMap.y = currentLocationMap.y + (1.3 * sin(currentLocationMap.theta));
       centerMap.theta = centerLocationMap.theta;
       logicController.SetCenterLocationMap(centerMap);
       

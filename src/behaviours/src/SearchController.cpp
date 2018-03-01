@@ -39,7 +39,7 @@ Result SearchController::DoWork() {
     }
     return result;
   }
-  else if (attemptCount >= 5 || attemptCount == 0) 
+   else if(attemptCount >= 5 || attemptCount == 0) 
   {
     attemptCount = 1;
 
@@ -72,16 +72,16 @@ Result SearchController::DoWork() {
     }
     else if (fourth_waypoint)
     {
-     searchLocation.theta = -1.5708; /*45 degrees in radians : rng->guassian : .785398 to 90 degress*/
+      searchLocation.theta = -1.5708; /*45 degrees in radians : rng->guassian : .785398 to 90 degress*/
       searchLocation.x = 0.0; //currentLocation.x + (0 * cos(searchLocation.theta)).5
       searchLocation.y = 0.0; //currentLocation.y + (4 * sin(searchLocation.theta))
     }
-    else
-    {
+    else;
+    /*{
       searchLocation.x = currentLocation.x + (3.4 * cos(searchLocation.theta));//.5
       searchLocation.y = currentLocation.y + (0 * sin(searchLocation.theta));
-    }
-    result.wpts.waypoints.clear();
+    }*/
+    //result.wpts.waypoints.clear();
     result.wpts.waypoints.insert(result.wpts.waypoints.begin(), searchLocation);
     
     return result;

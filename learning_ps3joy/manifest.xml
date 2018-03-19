@@ -1,0 +1,17 @@
+<package>
+  <description brief="learning_ps3joy">
+
+     learning_ps3joy
+
+  </description>
+  <author>swarmie3</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/learning_ps3joy</url>
+  <depend package="roscpp"/>
+  <depend package="turtlesim"/>
+  <depend package="ps3joy"/>
+
+</package>
+
+

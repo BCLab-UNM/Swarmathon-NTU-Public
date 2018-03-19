@@ -1,8 +1,8 @@
 #include "SearchController.h"
 #include <angles/angles.h>
-
+#include <iostream>
 SearchController::SearchController() {
-  rng = new random_numbers::RandomNumberGenerator();
+ // rng = new random_numbers::RandomNumberGenerator(); /* commented out random*/
   currentLocation.x = 0;
   currentLocation.y = 0;
   currentLocation.theta = 0;
@@ -26,12 +26,14 @@ void SearchController::Reset() {
 Result SearchController::DoWork() {
 
   if (!result.wpts.waypoints.empty()) {
-    if (hypot(result.wpts.waypoints[0].x-currentLocation.x, result.wpts.waypoints[0].y-currentLocation.y) < 0.15) {
+
+    if (hypot(result.wpts.waypoints[0].x-currentLocation.x, result.wpts.waypoints[0].y-currentLocation.y) < .10) {//.10
+
       attemptCount = 0;
     }
   }
 
-  if (attemptCount > 0 && attemptCount < 5) {
+   if (attemptCount > 0 && attemptCount < 5) {
     attemptCount++;
     if (succesfullPickup) {
       succesfullPickup = false;
@@ -39,7 +41,7 @@ Result SearchController::DoWork() {
     }
     return result;
   }
-  else if (attemptCount >= 5 || attemptCount == 0) 
+   else if(attemptCount >= 5 || attemptCount == 0) 
   {
     attemptCount = 1;
 
@@ -52,23 +54,41 @@ Result SearchController::DoWork() {
     {
       first_waypoint = false;
       searchLocation.theta = currentLocation.theta + M_PI;
-      searchLocation.x = currentLocation.x + (0.5 * cos(searchLocation.theta));
-      searchLocation.y = currentLocation.y + (0.5 * sin(searchLocation.theta));
+      searchLocation.x = currentLocation.x + (3.4 * cos(searchLocation.theta));//.5 3.4
+      searchLocation.y = currentLocation.y + (0 * sin(searchLocation.theta));
     }
-    else
+    else if (second_waypoint)
     {
+      second_waypoint = false;
       //select new heading from Gaussian distribution around current heading
-      searchLocation.theta = rng->gaussian(currentLocation.theta, 0.785398); //45 degrees in radians
-      searchLocation.x = currentLocation.x + (0.5 * cos(searchLocation.theta));
-      searchLocation.y = currentLocation.y + (0.5 * sin(searchLocation.theta));
+      searchLocation.theta = .77; /*45 degrees in radians : rng->guassian : .785398 to 90 degress*/
+      searchLocation.x = currentLocation.x + ( -4.75  * cos(searchLocation.theta));//.5,0
+      searchLocation.y = currentLocation.y + ( 4.9  * sin(searchLocation.theta));
     }
-
-    result.wpts.waypoints.clear();
+    else if (third_waypoint)
+    {
+      third_waypoint = false;
+      searchLocation.theta = 2.474; /*45 degrees in radians : rng->guassian : .785398 to 90 degress*/
+      searchLocation.x = currentLocation.x + ( -2 * cos(searchLocation.theta));//.5
+      searchLocation.y = currentLocation.y + ( 5.51 * sin(searchLocation.theta));
+    }
+    else if (fourth_waypoint)
+    {
+      searchLocation.theta = -1.5708; /*45 degrees in radians : rng->guassian : .785398 to 90 degress*/
+      searchLocation.x = -1.5708; //currentLocation.x + (0 * cos(searchLocation.theta)).5
+      searchLocation.y = 0.0; //currentLocation.y + (4 * sin(searchLocation.theta))
+    }
+    else;
+    /*{
+      searchLocation.x = currentLocation.x + (3.4 * cos(searchLocation.theta));//.5
+      searchLocation.y = currentLocation.y + (0 * sin(searchLocation.theta));
+    }*/
+    //result.wpts.waypoints.clear();
     result.wpts.waypoints.insert(result.wpts.waypoints.begin(), searchLocation);
     
     return result;
   }
-
+ 
 }
 
 void SearchController::SetCenterLocation(Point centerLocation) {
@@ -105,5 +125,6 @@ bool SearchController::HasWork() {
 void SearchController::SetSuccesfullPickup() {
   succesfullPickup = true;
 }
+
 
 

@@ -2,7 +2,7 @@
 
 // ROS libraries
 #include <angles/angles.h>
-#include <random_numbers/random_numbers.h>
+//#include <random_numbers/random_numbers.h>
 #include <tf/transform_datatypes.h>
 #include <tf/transform_listener.h>
 #include <message_filters/subscriber.h>
@@ -60,7 +60,7 @@ private:
 
 
 // Random number generator
-random_numbers::RandomNumberGenerator* rng;
+//random_numbers::RandomNumberGenerator* rng;
 
 // Create logic controller
 
@@ -287,7 +287,7 @@ void behaviourStateMachine(const ros::TimerEvent&)
       logicController.SetCenterLocationOdom(centerOdom);
       
       Point centerMap;
-      centerMap.x = currentLocationMap.x + (1.3 * cos(currentLocationMap.theta));
+      centerMap.x = currentLocationMap.x + (1.3 * cos(currentLocationMap.theta));//1.3
       centerMap.y = currentLocationMap.y + (1.3 * sin(currentLocationMap.theta));
       centerMap.theta = centerLocationMap.theta;
       logicController.SetCenterLocationMap(centerMap);
@@ -529,7 +529,7 @@ void virtualFenceHandler(const std_msgs::Float32MultiArray& message)
   {
     // Elements 2 and 3 are the x and y coordinates of the range center
     Point center;
-    center.x = message.data[1]; // Range center x
+    center.x = message.data[1]; // Range center x//1
     center.y = message.data[2]; // Range center y
     
     // If the shape type is "circle" then element 4 is the radius, if rectangle then width

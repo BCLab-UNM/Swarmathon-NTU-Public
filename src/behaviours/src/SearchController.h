@@ -47,6 +47,7 @@ private:
   bool second_waypoint = true;
   bool third_waypoint = true;
   bool fourth_waypoint = true;
+  bool fifth_waypoint = true;
   bool succesfullPickup = false;
 
  

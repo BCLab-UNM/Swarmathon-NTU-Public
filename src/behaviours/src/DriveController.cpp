@@ -43,8 +43,8 @@ Result DriveController::DoWork()
     {
       //do nothing till told otherwise
       left = 0.0;
-      right = 0.0;
-      stateMachineState = STATE_MACHINE_WAITING;
+      right = 0.0;//0.0
+      stateMachineState = STATE_MACHINE_WAITING;//waiting
     }
 
   }
@@ -105,14 +105,14 @@ Result DriveController::DoWork()
     {
       stateMachineState = STATE_MACHINE_WAITING;
       result.type = behavior;
-      interupt = true;
+      interupt = true;//true
       return result;
     }
     else
     {
       //select setpoint for heading and begin driving to the next waypoint
       stateMachineState = STATE_MACHINE_ROTATE;
-      waypoints.back().theta = atan2(waypoints.back().y - currentLocation.y, waypoints.back().x - currentLocation.x);
+      waypoints.back().theta = atan2(waypoints.back().y - currentLocation.y, waypoints.back().x - currentLocation.x);//*2
       result.pd.setPointYaw = waypoints.back().theta;
 
       //cout << "**************************************************************************" << endl; //DEBUGGING CODE
@@ -190,7 +190,7 @@ Result DriveController::DoWork()
     }
     else {
       // stopno change
-      left = 0.0;
+      left = 0.0;//0.0
       right = 0.0;
 
       // move back to transform step

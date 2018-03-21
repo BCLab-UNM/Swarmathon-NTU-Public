@@ -31,15 +31,15 @@ private:
 
   bool interupt = false; //hold if interupt has occured yet
 
-  float rotateOnlyAngleTolerance = 0.05;  //May be too low?
-  float finalRotationTolerance = 0.1; //dead code not used
+  float rotateOnlyAngleTolerance = 0.4;  //May be too low?.05
+  float finalRotationTolerance = 0.5; //dead code not used
   const float waypointTolerance = 0.15; //15 cm tolerance.
 
   //0.65 MAX value
-  float searchVelocity = 0.35; // meters/second
+  float searchVelocity = 0.5; // meters/second.35
 
-  float linearVelocity = 0;
-  float angularVelocity = 0;
+  float linearVelocity = 0;//0
+  float angularVelocity = 0.0;
 
   // Numeric Variables for rover positioning
   Point currentLocation;
